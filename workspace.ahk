@@ -3,27 +3,17 @@
 current_workspace := 1
 
 workspaces := [{
-    position: 1,
-    windows: [
-        'window1',
-        'window2'
-    ]
+    position: 0,
+    windows: []
 }, {
-    position: 1,
-    windows: [
-        'window3',
-    ]
+    position: 0,
+    windows: []
 }, {
-    position: 1,
-    windows: [
-        'window4',
-        'window5',
-    ]
+    position: 0,
+    windows: []
 }, {
-    position: 1,
-    windows: [
-        'window6',
-    ]
+    position: 0,
+    windows: []
 }]
 
 moveRight() {
