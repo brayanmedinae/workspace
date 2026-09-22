@@ -117,3 +117,45 @@ removeWindow(workspace_id, window) {
         }
     }
 }
+
+showDebugWindow() {
+    global debugGui, debugText
+
+    debugGui := Gui("+AlwaysOnTop", "Debug")
+    debugText := debugGui.Add("Edit", "w500 h300 ReadOnly")
+    debugGui.Show()
+
+    SetTimer(updateDebug, 200)
+}
+
+updateDebug() {
+    global debugText
+
+    debugText.Value := workspacesToString()
+}
+
+workspacesToString() {
+    global workspaces
+
+    result := ""
+
+    for i, workspace in workspaces {
+        result .= "Workspace " i ":`n"
+        result .= "  position: " workspace.position "`n"
+        result .= "  windows: ["
+
+        for j, window in workspace.windows {
+            result .= window
+
+            if j < workspace.windows.Length
+                result .= ", "
+        }
+
+        result .= "]`n"
+
+        if i < workspaces.Length
+            result .= "`n"
+    }
+
+    return result
+}
