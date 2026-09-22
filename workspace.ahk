@@ -56,6 +56,10 @@ moveDown() {
     }
 
     current_workspace += 1
+
+    if (workspaces[current_workspace].windows.Length == 0) {
+        current_workspace -= 1
+    }
 }
 
 moveUp() {
@@ -131,8 +135,9 @@ updateDebug() {
 
 workspacesToString() {
     global workspaces
+    global current_workspace
 
-    result := ""
+    result := "Current workspace:" current_workspace "`n`n"
 
     for i, workspace in workspaces {
         result .= "Workspace " i ":`n"
