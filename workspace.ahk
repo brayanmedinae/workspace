@@ -28,6 +28,8 @@ moveRight() {
     }
 
     workspace.position += 1
+
+    focusCurrentWindow()
 }
 
 moveLeft() {
@@ -42,6 +44,8 @@ moveLeft() {
     }
 
     workspace.position -= 1
+
+    focusCurrentWindow()
 }
 
 moveDown() {
@@ -60,6 +64,8 @@ moveDown() {
     if (workspaces[current_workspace].windows.Length == 0) {
         current_workspace -= 1
     }
+
+    focusCurrentWindow()
 }
 
 moveUp() {
@@ -74,6 +80,12 @@ moveUp() {
     }
 
     current_workspace -= 1
+
+    focusCurrentWindow()
+}
+
+focusCurrentWindow() {
+    WinActivate(workspaces[current_workspace].windows[workspaces[current_workspace].position])
 }
 
 addActiveWindow(workspace_id) {
