@@ -82,7 +82,7 @@ moveUp() {
     current_workspace -= 1
 }
 
-addCurrentWindow(workspace_id) {
+addActiveWindow(workspace_id) {
     instance := WinExist("A")
     addWindow(workspace_id, instance)
 }
@@ -103,7 +103,7 @@ addWindow(workspace_id, window) {
     target_workspace.windows.Push(window)
 }
 
-removeCurrentWindow(workspace_id) {
+removeActiveWindow(workspace_id) {
     instance := WinExist("A")
     removeWindow(workspace_id, instance)
 }
