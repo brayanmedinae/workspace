@@ -27,5 +27,3 @@ MButton & 3:: removeActiveWindow(3)
 
 #HotIf GetKeyState("Shift", "P")
 MButton & 4:: removeActiveWindow(4)
-
-showDebugWindow()
