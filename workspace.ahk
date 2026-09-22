@@ -82,11 +82,22 @@ moveUp() {
     current_workspace -= 1
 }
 
+addCurrentWindow(workspace_id) {
+    instance := WinExist("A")
+    addWindow(workspace_id, instance)
+}
+
 addWindow(workspace_id, window) {
     target_workspace := workspaces[workspace_id]
 
     if (target_workspace.position == 0) {
         target_workspace.position += 1
+    }
+
+    for w in target_workspace.windows {
+        if (window == w) {
+            return
+        }
     }
 
     target_workspace.windows.Push(window)
