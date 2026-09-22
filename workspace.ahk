@@ -103,6 +103,11 @@ addWindow(workspace_id, window) {
     target_workspace.windows.Push(window)
 }
 
+removeCurrentWindow(workspace_id) {
+    instance := WinExist("A")
+    removeWindow(workspace_id, instance)
+}
+
 removeWindow(workspace_id, window) {
     target_workspace := workspaces[workspace_id]
 
