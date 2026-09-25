@@ -95,11 +95,8 @@ addActiveWindow(workspace_id) {
 }
 
 addWindow(workspace_id, window) {
+    global current_workspace
     target_workspace := workspaces[workspace_id]
-
-    if (target_workspace.position == 0) {
-        target_workspace.position += 1
-    }
 
     for w in target_workspace.windows {
         if (window == w) {
@@ -108,6 +105,9 @@ addWindow(workspace_id, window) {
     }
 
     target_workspace.windows.Push(window)
+    target_workspace.position := target_workspace.windows.Length
+    current_workspace := workspace_id
+    focusCurrentWindow()
 }
 
 removeActiveWindow(workspace_id) {

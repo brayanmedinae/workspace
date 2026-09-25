@@ -25,3 +25,5 @@ MButton & 2:: removeActiveWindow(2)
 MButton & 3:: removeActiveWindow(3)
 MButton & 4:: removeActiveWindow(4)
 #HotIf
+
+; showDebugWindow()
