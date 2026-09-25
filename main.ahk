@@ -21,12 +21,7 @@ MButton & 4:: addActiveWindow(4)
 
 #HotIf GetKeyState("Shift", "P")
 MButton & 1:: removeActiveWindow(1)
-
-#HotIf GetKeyState("Shift", "P")
 MButton & 2:: removeActiveWindow(2)
-
-#HotIf GetKeyState("Shift", "P")
 MButton & 3:: removeActiveWindow(3)
-
-#HotIf GetKeyState("Shift", "P")
 MButton & 4:: removeActiveWindow(4)
+#HotIf
