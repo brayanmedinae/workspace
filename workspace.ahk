@@ -92,6 +92,7 @@ focusCurrentWindow() {
         WinActivate(window)
     } else {
         removeWindow(current_workspace, window)
+        focusCurrentWindow()
     }
 }
 
