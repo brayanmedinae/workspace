@@ -3,6 +3,14 @@
 
 #Include workspace.ahk
 
+#WheelUp:: {
+    Send "{Ctrl down}{LWin down}{Left}{LWin up}{Ctrl up}"
+}
+
+#WheelDown:: {
+    Send "{Ctrl down}{LWin down}{Right}{LWin up}{Ctrl up}"
+}
+
 RButton::RButton
 MButton::MButton
 
