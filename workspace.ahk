@@ -85,7 +85,8 @@ moveUp() {
 }
 
 focusCurrentWindow() {
-    WinActivate(workspaces[current_workspace].windows[workspaces[current_workspace].position])
+    workspace := workspaces[current_workspace]
+    WinActivate(workspace.windows[workspace.position])
 }
 
 addActiveWindow(workspace_id) {
