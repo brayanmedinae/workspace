@@ -1,5 +1,8 @@
 #Requires AutoHotkey v2.0+
 
+global debugGui := ""
+global debugText := ""
+
 current_workspace := 1
 
 workspaces := [{
@@ -137,6 +140,15 @@ removeWindow(workspace_id, window) {
     }
 }
 
+toggleDebugWindow() {
+    global debugGui
+
+    if (debugGui)
+        closeDebugWindow()
+    else
+        showDebugWindow()
+}
+
 showDebugWindow() {
     global debugGui, debugText
 
@@ -145,6 +157,16 @@ showDebugWindow() {
     debugGui.Show()
 
     SetTimer(updateDebug, 200)
+}
+
+closeDebugWindow(*) {
+    global debugGui, debugText
+
+    SetTimer(updateDebug, 0)
+
+    debugGui.Destroy()
+    debugGui := ""
+    debugText := ""
 }
 
 updateDebug() {

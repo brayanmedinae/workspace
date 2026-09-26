@@ -19,4 +19,4 @@ MButton & 2:: addActiveWindow(2)
 MButton & 3:: addActiveWindow(3)
 MButton & 4:: addActiveWindow(4)
 
-; showDebugWindow()
+RButton & q:: toggleDebugWindow()
