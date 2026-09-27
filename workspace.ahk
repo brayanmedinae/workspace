@@ -46,6 +46,26 @@ moveLeft() {
     focusCurrentWindow()
 }
 
+moveFirst() {
+    workspace := workspaces[current_workspace]
+
+    if (workspace.windows.Length == 0)
+        return
+
+    workspace.position := 1
+    focusCurrentWindow()
+}
+
+moveLast() {
+    workspace := workspaces[current_workspace]
+
+    if (workspace.windows.Length == 0)
+        return
+
+    workspace.position := workspace.windows.Length
+    focusCurrentWindow()
+}
+
 moveDown() {
     global current_workspace
 

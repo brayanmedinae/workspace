@@ -14,6 +14,8 @@ RButton & f:: moveRight()
 RButton & s:: moveLeft()
 RButton & d:: moveDown()
 RButton & e:: moveUp()
+RButton & w:: moveFirst()
+RButton & r:: moveLast()
 
 MButton & 1:: addActiveWindow(1)
 MButton & 2:: addActiveWindow(2)
