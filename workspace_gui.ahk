@@ -144,7 +144,7 @@ trackConfigDrag() {
         dropTarget := configDropTargetAt(mouseX, mouseY)
         destination := dropTarget
             ? "`nWorkspace " dropTarget.workspace ", posición " dropTarget.position
-            : ""
+                : ""
         previousToolTipMode := A_CoordModeToolTip
         CoordMode("ToolTip", "Screen")
         ToolTip("Mover: " configDragTitle destination, mouseX + 18, mouseY + 18)
