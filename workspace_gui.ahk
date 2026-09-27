@@ -141,19 +141,23 @@ trackConfigDrag() {
     MouseGetPos(&mouseX, &mouseY)
     CoordMode("Mouse", previousMouseMode)
     if GetKeyState("LButton", "P") {
+        dropTarget := configDropTargetAt(mouseX, mouseY)
+        destination := dropTarget
+            ? "`nWorkspace " dropTarget.workspace ", posición " dropTarget.position
+            : ""
         previousToolTipMode := A_CoordModeToolTip
         CoordMode("ToolTip", "Screen")
-        ToolTip("Mover: " configDragTitle, mouseX + 18, mouseY + 18)
+        ToolTip("Mover: " configDragTitle destination, mouseX + 18, mouseY + 18)
         CoordMode("ToolTip", previousToolTipMode)
         return
     }
 
     ToolTip()
     SetTimer(trackConfigDrag, 0)
-    targetWorkspace := configWorkspaceAt(mouseX, mouseY)
+    dropTarget := configDropTargetAt(mouseX, mouseY)
 
-    if (targetWorkspace && targetWorkspace != configDragWorkspace)
-        moveWindowFromConfig(configDragWindow, configDragWorkspace, targetWorkspace)
+    if (dropTarget)
+        moveWindowFromConfig(configDragWindow, configDragWorkspace, dropTarget.workspace, dropTarget.position)
 
     configDragWindow := 0
     configDragWorkspace := 0
@@ -177,10 +181,31 @@ configWorkspaceAt(mouseX, mouseY) {
     return workspaceId >= 1 && workspaceId <= workspaces.Length ? workspaceId : 0
 }
 
-moveWindowFromConfig(window, sourceId, targetId) {
+configDropTargetAt(mouseX, mouseY) {
+    global configGui
+
+    workspaceId := configWorkspaceAt(mouseX, mouseY)
+    if (!workspaceId)
+        return 0
+
+    WinGetPos(&guiX, , , , "ahk_id " configGui.Hwnd)
+    localX := mouseX - guiX
+    targetPosition := 1
+
+    for index, window in workspaces[workspaceId].windows {
+        cardCenter := 190 + (index - 1) * 190 + 89
+        if (localX < cardCenter)
+            return { workspace: workspaceId, position: index }
+        targetPosition := index + 1
+    }
+
+    return { workspace: workspaceId, position: targetPosition }
+}
+
+moveWindowFromConfig(window, sourceId, targetId, targetPosition) {
     global configSelectedWorkspace, configSelectedWindow
 
-    moveWindowToWorkspace(window, sourceId, targetId)
+    moveWindowToWorkspace(window, sourceId, targetId, targetPosition)
     configSelectedWindow := window
     configSelectedWorkspace := targetId
     rebuildWindowConfig()

@@ -134,8 +134,16 @@ removeWindow(workspace_id, window) {
     }
 }
 
-moveWindowToWorkspace(window, source_id, target_id) {
+moveWindowToWorkspace(window, source_id, target_id, target_position := 0) {
     global current_workspace
+
+    source_position := 0
+    for index, source_window in workspaces[source_id].windows {
+        if (source_window == window) {
+            source_position := index
+            break
+        }
+    }
 
     removeWindow(source_id, window)
     target_workspace := workspaces[target_id]
@@ -149,8 +157,15 @@ moveWindowToWorkspace(window, source_id, target_id) {
         }
     }
 
-    target_workspace.windows.Push(window)
-    target_workspace.position := target_workspace.windows.Length
+    if (source_id == target_id && source_position && source_position < target_position)
+        target_position -= 1
+
+    if (target_position < 1)
+        target_position := target_workspace.windows.Length + 1
+    target_position := Min(target_position, target_workspace.windows.Length + 1)
+
+    target_workspace.windows.InsertAt(target_position, window)
+    target_workspace.position := target_position
     current_workspace := target_id
     focusCurrentWindow()
 }
