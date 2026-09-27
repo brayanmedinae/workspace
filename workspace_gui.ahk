@@ -141,7 +141,10 @@ trackConfigDrag() {
     MouseGetPos(&mouseX, &mouseY)
     CoordMode("Mouse", previousMouseMode)
     if GetKeyState("LButton", "P") {
+        previousToolTipMode := A_CoordModeToolTip
+        CoordMode("ToolTip", "Screen")
         ToolTip("Mover: " configDragTitle, mouseX + 18, mouseY + 18)
+        CoordMode("ToolTip", previousToolTipMode)
         return
     }
 
